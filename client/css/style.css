@@ -13,8 +13,6 @@ body {
 	xheight: 1400px;
 	xwidth: 2000px;
 
-
-
 	user-select: none;
 	-o-user-select:none;
 	-moz-user-select: none;
@@ -156,18 +154,27 @@ h1, h1 a {
 }
 
 h2 {
-	font-family: 'Rock Salt', "Arial Rounded MT Bold", arial, serif;
-	color: #5c9db4;
-	font-size: 18px;
-	}
+    font-family: Helvetica, arial, sans-serif;
+    font-weight: bold;
+    color: #4c4c4c;
+    font-size: 20px;
+    vertical-align: inherit;
+}
+
+h2 {
+	font-family: Helvetica, arial, sans-serif;
+	font-weight: bold;
+	color: #4c4c4c;
+	font-size: 20px;
+	vertical-align: inherit;
+}
 
 .bottom-icon {
-	padding: 5px;
+	padding: 5px 10px 5px 0px;
 	opacity: .4;
 }
 
 .bottom-icon:hover {
-	padding: 5px;
 	opacity: .6;
 }
 
@@ -211,71 +218,94 @@ h2 {
 
 .buttons {
 	float: left;
+	width: 500px;
+    text-align: left;
+	padding-top: 15px;
+    letter-spacing: 1px;
+    color: #4E4E4E;
+    font-family: 'Helvetica Neue Light', arial, serif;
+    font-size: 13px;
+}
+
+.buttons label {
+	font-style: normal !important;
+	color: #4E4E4E;
+	letter-spacing: 1px;
+	font-family: 'Helvetica Neue Light', arial, serif;
+	font-size: 13px;
+}
+
+.buttons select {
+	font-style: normal !important;
+	color: #4E4E4E;
+	letter-spacing: 1px;
+	font-family: 'Helvetica Neue Light', arial, serif;
+	font-size: 13px;
+	border-radius:10px;
+	border:1px solid #AAAAAA;
 }
 
 .names {
-	padding-left: 10px;
-	width: 980px;
-	text-align: right;
-	color: #bbb;
-	letter-spacing: 4px;
-	font-family:  "Helvetica Neue Light", "HelveticaNeue-Light", 'Helvetica Neue', arial, serif;
+	width: 500px;
+	padding-top: 75px;
+	text-align: left;
+	color: #4E4E4E;
+	letter-spacing: 1px;
+    font-family: 'Helvetica Neue Light', arial, serif;
 	font-size: 13px;
-
 }
 
 .names p {
-	padding: 0; margin 0;
+	margin: 0;
+	padding-bottom: 5px;
+	width: 200px;
+	font-weight: bold;
 }
 
 .names ul {
 	list-style: none;
 	margin-top: 4px;
 	margin-bottom: 4px;
+	padding-left: 0px;
 }
 
 #yourname-li {
-	color: #888;
+	color: #4E4E4E;
 }
 
 .names input {
-   padding: 0; //2px 8px 2px 2px;
-    border: none;
     outline: 0;
-    width: 100px;
-    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
-    background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
+	width: 80px;
+    /*background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);*/
 
-	background: none;
+	background-color: #FFFFFF;
+	padding: 2px 5px;
+	border: 1px solid #ccc;
+
 	border-radius: 10px;
-	color: #666;
-	text-align: right;
-	font-family:  "Helvetica Neue Light", "HelveticaNeue-Light", 'Helvetica Neue', arial, serif;
+	color: #4E4E4E;
+	text-align: left;
+    font-family: 'Helvetica Neue Light', arial, serif;
 	font-size: 13px;
-	letter-spacing: 4px;
+	letter-spacing: 1px;
 	margin:0;
 
 	position: relative;
 }
 
 .names input:hover {
-    xpadding: 2px 2px 2px 2px;
-    xborder: solid 1px #E5E5E5;
+	text-align: left;
     outline: 0;
-    width: 100px;
-    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
-    background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
-xopacity: .5;
-	background: none;
-    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
-	border-radius: 10px;
-	color: #aaa;
-	text-align: right;
-	font-family:  "Helvetica Neue Light", "HelveticaNeue-Light", 'Helvetica Neue', arial, serif;
-	font-size: 13px;
-	letter-spacing: 4px;
-	margin:0;
+    /*background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);*/
 
+	border-radius: 10px;
+	color: #1EA787;
+	font-family: 'Helvetica Neue Light', arial, serif;
+	font-size: 13px;
+	letter-spacing: 1px;
+	margin:0;
 }
 
 .names .focused {
@@ -304,11 +334,43 @@ xopacity: .5;
 }
 
 .stickers {
-	width: 1000px;
+	float: right;
 	text-align: right;
-	padding-top: 2px; margin: 0;
+	padding-top: 15px;
 }
 
+
+#white-card {
+	background-image: url('../images/stickers/card-white.png');
+}
+#yellow-card {
+	background-image: url('../images/stickers/card-yellow.png');
+}
+#green-card {
+	background-image: url('../images/stickers/card-green.png');
+}
+#blue-card {
+	background-image: url('../images/stickers/card-blue.png');
+}
+#red-card {
+	background-image: url('../images/stickers/card-red.png');
+}
+
+#black-font {
+	background-image: url('../images/stickers/card-black.png');
+}
+#white-font {
+	background-image: url('../images/stickers/card-white.png');
+}
+#green-font {
+	background-image: url('../images/stickers/card-green.png');
+}
+#blue-font {
+	background-image: url('../images/stickers/card-blue.png');
+}
+#red-font {
+	background-image: url('../images/stickers/card-red.png');
+}
 
 #sticker-red {
 	background-image: url('../images/stickers/sticker-red.png');
@@ -451,7 +513,7 @@ xopacity: .5;
 /* Stuff for landing page */
 h1.home {
 	font-size: 100px;
-	font-family: 'Covered By Your Grace',"Arial Rounded MT Bold", arial, serif;
+	font-family: Verdana, Geneva, sans-serif;
 	color: #19ba98;
 	opacity: .8;
 	padding: 0;
@@ -462,7 +524,7 @@ h1.home {
 
 .home {
 	font-size: 30px;
-	font-family: 'Covered By Your Grace',"Arial Rounded MT Bold", arial, serif;
+	font-family: Verdana, Geneva, sans-serif;
 	color: #19ba98;
 	color: #222;
 	opacity: 1;
@@ -495,7 +557,7 @@ input.text {
     margin-bottom: 10px;
     border: none;
 	font-size: 30px;
-	font-family: 'Covered By Your Grace',"Arial Rounded MT Bold", arial, serif;
+	font-family: Verdana, Geneva, sans-serif;
 	color: #5c9db4;
 	text-align: center;
 	border-bottom: dashed 3px #19ba98;
@@ -511,13 +573,10 @@ input:hover {
     margin-bottom: 10px;
     border: none;
 	font-size: 40px;
-	font-family: 'Covered By Your Grace',"Arial Rounded MT Bold", arial, serif;
+	font-family: Verdana, Geneva, sans-serif;
 	color: #19ba98;
-	color: black;
 
 	xborder: solid 1px;
-
-
 
 }
 
@@ -542,6 +601,12 @@ input:hover {
 #eraser {
 	position: absolute; bottom: 0; right: 70px;
 	z-index: 1;
+}
+
+#choose-card-color {
+    padding: 3px;
+    color: #666;
+    font-family: 'Helvetica Neue Light', arial, serif;
 }
 
 
@@ -571,11 +636,6 @@ img {
 	bottom: 4px;
 }
 
-
-
-
-
-
 .filler {
 	xwidth: 100%;
 	xbackground-color: rgba(255,0,0,0.1);
@@ -594,14 +654,14 @@ img {
 
 
 /* states and images */
-.ui-icon { width: 16px; height: 16px; background-image: url(../images/ui-icons_222222_256x240.png); }
-.ui-widget-content .ui-icon {background-image: url(../images/ui-icons_222222_256x240.png); }
-.ui-widget-header .ui-icon {background-image: url(../images/ui-icons_222222_256x240.png); }
-.ui-state-default .ui-icon { background-image: url(../images/ui-icons_888888_256x240.png); }
-.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url(../images/ui-icons_454545_256x240.png); }
-.ui-state-active .ui-icon {background-image: url(../images/ui-icons_454545_256x240.png); }
-.ui-state-highlight .ui-icon {background-image: url(../images/ui-icons_2e83ff_256x240.png); }
-.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: url(../images/ui-icons_cd0a0a_256x240.png); }
+/*.ui-icon { width: 16px; height: 16px; background-image: url(/images/ui-icons_222222_256x240.png); }
+.ui-widget-content .ui-icon {background-image: url(/images/ui-icons_222222_256x240.png); }
+.ui-widget-header .ui-icon {background-image: url(/images/ui-icons_222222_256x240.png); }*/
+.ui-state-default .ui-icon { background-image: url(/images/ui-icons_888888_256x240.png); }
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url(/images/ui-icons_454545_256x240.png); }
+.ui-state-active .ui-icon {background-image: url(/images/ui-icons_454545_256x240.png); }
+.ui-state-highlight .ui-icon {background-image: url(/images/ui-icons_2e83ff_256x240.png); }
+.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: url(/images/ui-icons_cd0a0a_256x240.png); }
 
 
 .ui-resizable { position: relative;}

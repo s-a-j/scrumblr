@@ -154,6 +154,48 @@ io.sockets.on('connection', function (client) {
 
 				break;
 
+			case 'changeCardColour':
+				
+				//console.log("-----" + message.data.id);
+				//console.log(JSON.stringify(message.data));
+				
+				message_out = {
+					action: message.action,
+					data: {
+						id: scrub(message.data.id),
+						colour: scrub(message.data.colour)
+						}
+					};
+
+				broadcastToRoom( client, message_out );
+
+				getRoom(client, function(room) {
+					db.cardSetColour( room , message.data.id, message.data.colour);
+				});
+
+				break;
+
+			case 'changeCardFontColour':
+
+				// console.log("-----" + message.data.id);
+				// console.log(JSON.stringify(message.data));
+
+				message_out = {
+					action: message.action,
+					data: {
+						id: scrub(message.data.id),
+						fontColour: scrub(message.data.fontColour)
+					}
+				};
+
+				broadcastToRoom( client, message_out );
+
+				getRoom(client, function(room) {
+					db.cardSetFontColour( room , message.data.id, message.data.fontColour);
+				});
+
+				break;
+
 			case 'createCard':
 				data = message.data;
 				clean_data = {};
@@ -163,9 +205,10 @@ io.sockets.on('connection', function (client) {
 				clean_data.y = scrub(data.y);
 				clean_data.rot = scrub(data.rot);
 				clean_data.colour = scrub(data.colour);
+				clean_data.fontColour = scrub(data.fontColour);
 
 				getRoom(client, function(room) {
-					createCard( room, clean_data.id, clean_data.text, clean_data.x, clean_data.y, clean_data.rot, clean_data.colour);
+					createCard( room, clean_data.id, clean_data.text, clean_data.x, clean_data.y, clean_data.rot, clean_data.colour, clean_data.fontColour);
 				});
 
 				message_out = {
@@ -429,7 +472,7 @@ function broadcastToRoom ( client, message ) {
 }
 
 //----------------CARD FUNCTIONS
-function createCard( room, id, text, x, y, rot, colour ) {
+function createCard( room, id, text, x, y, rot, colour, fontColour ) {
 	var card = {
 		id: id,
 		colour: colour,
@@ -437,7 +480,8 @@ function createCard( room, id, text, x, y, rot, colour ) {
 		x: x,
 		y: y,
 		text: text,
-		sticker: null
+		sticker: null,
+		fontColour: fontColour
 	};
 
 	db.createCard(room, id, card);

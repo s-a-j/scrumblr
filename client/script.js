@@ -11,7 +11,8 @@ var socket = io.connect({path: baseurl + "/socket.io"});
 //an action has happened, send it to the
 //server
 function sendAction(a, d) {
-    //console.log('--> ' + a);
+
+    //console.log('send --> ' + a);
 
     var message = {
         action: a,
@@ -72,7 +73,7 @@ function getMessage(m) {
     var action = message.action;
     var data = message.data;
 
-    //console.log('<-- ' + action);
+    //('rec <-- ' + action);
 
     switch (action) {
         case 'roomAccept':
@@ -89,6 +90,16 @@ function getMessage(m) {
             moveCard($("#" + data.id), data.position);
             break;
 
+        case 'changeCardColour':
+            card = $('#' + data.id + ' .card-image');
+            card.attr("src","images/" + data.colour + "-card.png");
+            break;
+
+        case 'changeCardFontColour':
+            card = $('#' + data.id + ' .content');
+            card.css('color', data.fontColour);
+            break;
+
         case 'initCards':
             initCards(data);
             break;
@@ -96,6 +107,7 @@ function getMessage(m) {
         case 'createCard':
             //console.log(data);
             drawNewCard(data.id, data.text, data.x, data.y, data.rot, data.colour,
+                null,
                 null);
             break;
 
@@ -160,7 +172,7 @@ $(document).bind('keyup', function(event) {
     keyTrap = event.which;
 });
 
-function drawNewCard(id, text, x, y, rot, colour, sticker, animationspeed) {
+function drawNewCard(id, text, x, y, rot, colour, sticker, fontColour, animationspeed) {
     //cards[id] = {id: id, text: text, x: x, y: y, rot: rot, colour: colour};
 
     var h = '<div id="' + id + '" class="card ' + colour +
@@ -171,7 +183,7 @@ function drawNewCard(id, text, x, y, rot, colour, sticker, animationspeed) {
 	<img class="card-image" src="images/' +
         colour + '-card.png">\
 	<div id="content:' + id +
-        '" class="content stickertarget droppable">' +
+        '" class="content stickertarget droppable" style="color:' + fontColour + '">' +
         text + '</div><span class="filler"></span>\
 	</div>';
 
@@ -227,6 +239,37 @@ function drawNewCard(id, text, x, y, rot, colour, sticker, animationspeed) {
         drop: function(event, ui) {
             var stickerId = ui.draggable.attr("id");
             var cardId = $(this).parent().attr('id');
+
+            if (stickerId.substr(stickerId.length - 4) === "card") {
+                var colour = stickerId.substr(0, stickerId.length - 5);
+                var action = "changeCardColour";
+                var data = {
+                   id: cardId,
+                   colour: colour
+                };
+                
+                sendAction(action, data);
+                var card = $('#' + data.id + ' .card-image');
+                card.attr("src","images/" + colour + "-card.png");
+                
+                return;
+            }
+
+            if (stickerId.substr(stickerId.length - 4) === "font") {
+                var colour = stickerId.substr(0, stickerId.length - 5);
+                var action = "changeCardFontColour";
+                var data = {
+                    id: cardId,
+                    fontColour: colour
+                };
+
+                sendAction(action, data);
+                var cardText = $('#' + data.id + ' .content');
+                cardText.css('color', colour);
+
+                return;
+            }
+            
 
             addSticker(cardId, stickerId);
 
@@ -347,7 +390,7 @@ function addSticker(cardId, stickerId) {
 // cards
 //----------------------------------
 function createCard(id, text, x, y, rot, colour) {
-    drawNewCard(id, text, x, y, rot, colour, null);
+    drawNewCard(id, text, x, y, rot, colour, null, null);
 
     var action = "createCard";
 
@@ -365,7 +408,12 @@ function createCard(id, text, x, y, rot, colour) {
 }
 
 function randomCardColour() {
-    var colours = ['yellow', 'green', 'blue', 'white'];
+	var choosed = $('#choose-card-color').val();
+    if (choosed !== 'random') {
+        return choosed;
+    }
+
+    var colours = ['yellow', 'green', 'blue', 'white', 'red'];
 
     var i = Math.floor(Math.random() * colours.length);
 
@@ -390,6 +438,7 @@ function initCards(cardArray) {
             card.rot,
             card.colour,
             card.sticker,
+            card.fontColour,
             0
         );
     }
@@ -571,7 +620,7 @@ function displayInitialUsers(users) {
 }
 
 function displayUserJoined(sid, user_name) {
-    name = '';
+    var name = '';
     if (user_name)
         name = user_name;
     else
@@ -582,7 +631,7 @@ function displayUserJoined(sid, user_name) {
 }
 
 function displayUserLeft(sid) {
-    name = '';
+    var name = '';
     if (name)
         name = user_name;
     else
@@ -700,7 +749,7 @@ $(function() {
             createCard(
                 'card' + uniqueID,
                 '',
-                58, $('div.board-outline').height(), // hack - not a great way to get the new card coordinates, but most consistant ATM
+                250, $('div.board-outline').height(), // hack - not a great way to get the new card coordinates, but most consistant ATM
                 rotation,
                 randomCardColour());
         });
@@ -739,7 +788,7 @@ $(function() {
 
     $('#add-col').click(
         function() {
-            createColumn('New');
+            createColumn('SPRINT #');
             return false;
         }
     );

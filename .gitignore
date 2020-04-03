@@ -6,3 +6,8 @@ rsync.sh
 node_modules/
 *.rdb
 *.out
+.idea/workspace.xml
+.idea/vcs.xml
+.idea/scrumblr.iml
+.idea/modules.xml
+.idea/misc.xml
